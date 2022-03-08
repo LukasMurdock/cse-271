@@ -11,6 +11,16 @@ Disadvantage:
 - Troubleshooting issues can be tricky
 - Object-oriented programs tend to be a bit larger than procedural solutions
 
+## note-exception
+An exception is an object that is handed to the runtime when an error occurs.
+
+When an exception is thrown, the runtime searches for an exception handler block to catch the thrown exception. If the runtime does not find an exception handler for the thrown exception the runtime terminates.
+
+Checked exceptions are checked during compile time and caught; however, unchecked exceptions are thrown during runtime as having to add runtime exceptions in every method declaration would reduce a program's readability. Every exception in Java is a checked exception unless it extends RuntimeException.
+
+RuntimeException and its descendants are unchecked exceptions. All other Throwable and Exception classes and their descendants are checked exceptions and must be included in the throws clause of a method.
+
+
 ## note-OOP-tenets
 Encapsulation: Ability to encapsulate all necessary variables and functions.
 
@@ -30,10 +40,25 @@ Polymorphism: Child class can override parent class function.
 ## note-super
 Super enables calling the constructor in a parent class.
 
+## note-casting
+Upcasting is casting to a supertype.
+
+Down-casting is casting to a sub-type. Safe down-casting can be achieved with type checking.
+
 ## note-copy
 Shallow copies reuse the object references.
 
+Public Student(Student studentToCopy) {
+this.scores = studentToCopy.scores;
+this.name = studentToCopy.name;
+}
+
 Deep copies creates new objects and copies the values.
+
+Public Student(Student studentToCopy) {
+This.name = studentToCopy.name;
+This.scores = Arrays.copy(studentToCopy.scores);
+}
 
 ## note-class
 A derived class cannot make the access modifier to be more restrictive than that defined by the parent class.
@@ -46,6 +71,8 @@ private: Attribute is accessible only within the class (Typically instance varia
 public: Attribute is accessible inside & outside the class
 
 ## vs-static
+Static instance variables are shared among all instances of a class. Non-static instance variables are specific to that class instance.
+
 If a variable is static, then there is only 1 value and it is the same (or shared) by all instances.
 
 Every non-static method has an implicit local object than can be referred to using the this keyword.
@@ -65,6 +92,8 @@ Interface:
 ## vs-getclass-instanceof
 Most of the time you should use instanceof. You should only use getClass when you want to know if two classes are exactly the same, e.g., an equals method. In all other cases instanceof is the better option.
 
+Using instanceof requires knowing the class at compile time. Checking the class checks at runtime.
+
 ## vs-clone-cloneable
 Cloneable enables creating a clone in a polymorphic manner. (implements Cloneable, Comparable<Person>)
 
@@ -82,6 +111,20 @@ public Person clone() {
 (underline) final
 ->: From child to parent (solid line)
 -->: From class to interface (dashed line)
+
+## method-class
+public Class Fruit{
+    private double cost;
+    private double weight;
+    private int amount;
+
+    public Fruit(){};
+    public Fruit(int amount, double cost, double weight){
+        this.cost = cost;
+        this.amount = amount;
+        this.weight = weight;
+    }
+}
 
 ## method-equals
 public class Person {
