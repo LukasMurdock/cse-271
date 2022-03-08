@@ -103,7 +103,7 @@ public Person clone() {
 }
 
 
-## UML
+## note:UML
 (+) public
 (-) private
 (#) protected
@@ -163,6 +163,7 @@ public Integer getLargest(ArrayList<Integer> list) {
 }
 
 ## method-largest-compareTo
+<!-- TODO -->
 Find the largest or smallest object of a given class type in a list based on value returned by compareTo method.
 
 ## method-largest-array
