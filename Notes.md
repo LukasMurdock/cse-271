@@ -1,17 +1,26 @@
 ## note-OOP-advantages
-Advantages and disadvantages of OOP
+Advantage:
+- Encapsulation provides better organization of data and methods.
+- Abstraction (via methods) allows design of effective API for programmers
+- Inheritance streamlines software reuse
+- Polymorphism enables selective customization of functionality enabling effective use of inheritance
+- OOP reduces software development and maintenance costs when use correctly
+
+Disadvantage:
+- There is a steeper learning curve
+- Troubleshooting issues can be tricky
+- Object-oriented programs tend to be a bit larger than procedural solutions
 
 ## note-OOP-tenets
-Encapsulation: Ability to encapsulate all neccessary variables and functions.
+Encapsulation: Ability to encapsulate all necessary variables and functions.
 
 Abstraction: Ability to hide details of how the class operates.
 
-Inheritence: Ability to inherit variables and functions from a parent class.
+Inheritance: Ability to inherit variables and functions from a parent class.
 
 Polymorphism: Child class can override parent class function.
 
 ## note-testing-types
-
 - Unit testing: Test methods and classes.
 - Functional testing: Test functionality of features.
 - Regression testing: Aims to detect if existing features are broken.
