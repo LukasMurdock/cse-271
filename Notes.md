@@ -209,3 +209,94 @@ List<User> sortedList = userList.stream()
 return list.stream()
 .distinct()
 .collect(Collectors.toCollection(ArrayList::new));
+
+---
+
+# Midterm With Above
+
+---
+
+## method-factorial-recursive
+// iterative
+public int factorial(int n) {
+    int product = 1;
+    for (int j = 1; j <= n; j++)
+        product *= j;
+    return product;
+}
+
+// recursive
+public int factorial(int n) {
+    return (n < 2) ? 1 : (n * factorial(n - 1));
+}
+
+
+## method-reverse-recursive
+// iterative
+public int reverse(int n) {
+  int rev = 0;
+  for (; (n > 0); n /= 10) {
+    rev = (rev * 10) + (n % 10);
+  }
+  return rev;
+}
+
+// recursive
+public int reverse(int n) {
+    if (n < 10) {
+            return n;
+    } else {
+
+    }
+}
+
+## method-count-char-recursive
+// minified
+public static int countX(String str) {
+    return (str.length() == 0)
+        ? 0
+        : (str.charAt(0) == 'x' ? 1 : 0) + countX(str.substring(1));
+}
+
+// explained
+public int countX(String str) {
+    // Base case -- return simple answer
+    if (str.length() == 0) {
+        return 0;
+    }
+
+    // Deal with the very front of the string (index 0) -- count "X" there.
+    int count = 0;
+    if (str.charAt(0) == 'x') {
+        count = 1;
+    }
+
+    // Make a recursive call to deal with the rest of string (the part
+    // beyond the front).
+    // Add count to whatever the recursive call returns to make the final
+    // answer.
+    // Note that str.substring(1) starts with char 1 and goes to the
+    // end of the string.
+    return count + countX(str.substring(1));
+}
+
+## method-count-number-recursive
+public static int array11(final int[] array, int index) {
+    return (array.length == index)
+        ? 0
+        : (array[index] == 11 ? 1 : 0) + array11(array, index + 1);
+}
+
+## method-fibonacci-recursive
+public static int fibonacci(int n) {
+    return (n < 2)
+        ? n
+        : fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+## method-sumdigits-recursive
+public int sumDigits(int n) {
+    return (n == 0)
+        ? n
+        : (n % 10 + sumDigits(n / 10));
+}
