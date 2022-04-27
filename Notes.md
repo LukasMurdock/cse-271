@@ -20,7 +20,6 @@ Checked exceptions are checked during compile time and caught; however, unchecke
 
 RuntimeException and its descendants are unchecked exceptions. All other Throwable and Exception classes and their descendants are checked exceptions and must be included in the throws clause of a method.
 
-
 ## note-OOP-tenets
 Encapsulation: Ability to encapsulate all necessary variables and functions.
 
@@ -354,10 +353,10 @@ Arrays.sort(list1);
 Collections.sort(list2);
 for(inti = 0; (i < list1.length); i++) {
 if(list1[i] != list2.get(i)) {
-returnfalse; // At least 1 difference. Not same.
+return false; // At least 1 difference. Not same.
 }
 }
-returntrue; // Yes! The sorted arrays are the same!
+return true; // Yes! The sorted arrays are the same!
 }
 
 // binary search examples
