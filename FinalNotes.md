@@ -40,6 +40,7 @@ Most of the time you should use instanceof. You should only use getClass when yo
 
 Using instanceof requires knowing the class at compile time. Checking the class checks at runtime.
 
+
 ## vs-upcasting-downcasting
 Up-casting is casting to a supertype. Down-casting is casting to a sub-type. Safe down-casting can be achieved with type checking.
 
@@ -52,9 +53,13 @@ public Person clone() {
 }
 
 ## note-exceptions
-- Checked vs. unchecked
-- Try, catch, finally (when is finally run)
-- Throwing and catching exceptions
+An exception is an object that is handed to the runtime when an error occurs.
+
+When an exception is thrown, the runtime searches for an exception handler block to catch the thrown exception. If the runtime does not find an exception handler for the thrown exception the runtime terminates.
+
+Checked exceptions are checked during compile time and caught; however, unchecked exceptions are thrown during runtime as having to add runtime exceptions in every method declaration would reduce a program's readability. Every exception in Java is a checked exception unless it extends RuntimeException.
+
+RuntimeException and its descendants are unchecked exceptions. All other Throwable and Exception classes and their descendants are checked exceptions and must be included in the throws clause of a method.
 
 ## note-UML
 (+) public
@@ -65,7 +70,9 @@ public Person clone() {
 ->: From child to parent (solid line)
 -->: From class to interface (dashed line)
 
+<!-- TODO -->
 ## method-copy-tostring-equals-compareto-clone
+
 - copy constructors
 - toString methods
 - equals methods
@@ -97,18 +104,52 @@ public void doIt(Event E) {
 }
 
 ## method-text-file
-- Read and process data from a Scanner or PrintWriter object tied to text file
+try {
+File fileObject = new File(inFilename);
+Scanner scanner = new Scanner(fileObject);
+FileWriter fileWriter = new FileWriter(outFilename);
+PrintWriter printer = new PrintWriter(fileWriter);
+
+while (scanner.hasNextLine()) {
+    String s = scanner.nextLine();
+    printer.write(s);
+}
+} catch (Exception E) {
+} finally {
+    if (scanner != null) {
+        scanner.close();
+    }
+    if (printer != null) {
+        printer.close();
+    }
+}
+
 
 ## method-binary-file
-- Read binary data using a FileInputStream or a DataInputStream
-- Write binary data using FileOutputStream or DataOutputStream
+// Read binary data
+FileInputStream fis = new FileInputStream(path);
+ObjectInputStream ois = new ObjectInputStream(fis);
+
+try {
+    Object temp = null;
+    while((temp = ois.readObject()) != null) {
+        System.out.println(temp);
+    }
+} catch (Exception E) {
+} finally {
+    ois.close();
+}
+
+// Write binary data
+FileOutputStream fos = new FileOutputStream("person.dat");
+ObjectOutputStream oos = new ObjectOutputStream(fos);
+Person p1 = new Person(25, "John Doe");
+oos.writeObject(p1);
+oos.close();
+
+
 
 ## note-time-complexity
-- Big-O basics
-- Time complexity terms and notations
-- O(1): constant, O(log n): logarithmic, O(n): linear, O(n log n): Log-linear, O(n2): Quadratic, O(n3): Cubic
-- Determine time complexity of a given code fragment
-
 O(1) < O(log n) < O(n) < O(n log n) < O(n2) < O(n3) < O(2n) < O(n!)
 
 O(1): constant, O(log n): logarithmic, O(n): linear, O(n log n): Log-linear, O(n2): Quadratic, O(n3): Cubic
@@ -239,8 +280,6 @@ swap(a, i, minIdx);
 }
 
 ## method-sorting-quicksort
-- Quick sort – partitioning method and identifying pivot
-
 static <X extends Comparable<X> >
 int partition(X data[], int min, int max) {
 X pivot = data[min]; // Assume first element as the pivot
@@ -386,8 +425,9 @@ public class Person {
 }
 
 ## note-getclass-versus-instanceof
-- Using getClass vs instanceof method
+Most of the time you should use instanceof. You should only use getClass when you want to know if two classes are exactly the same, e.g., an equals method. In all other cases instanceof is the better option.
 
+Using instanceof requires knowing the class at compile time. Checking the class checks at runtime.
 
 ## method-loops
 - Loops for number of manipulations
@@ -398,10 +438,26 @@ public class Person {
 # fak
 
 ## method-point-compare-clone
-- Create an object that extends the Point class and implements the Comparable interface and Clonable interface.
+public class ExtendPoint extends Point implements Cloneable,
+    Comparable<ExtendPoint> {
+    int tiebreaker;
+
+    public ExtendPoint(ExtendPoint extendPoint) {
+    }
+
+    public ExtendPoint clone() {
+        return new ExtendPoint(this);
+    }
+
+    @Override
+    public int compareTo(ExtendPoint o) {
+        return Integer.compare(this.x, o.x);
+    }
+}
 
 ## method-compareto-largest-smallest
 Find the largest or smallest object of a given class type in a list based on value returned by compareTo method.
+
 - § Know the difference between using instanceof versus checking class name
 
 Find the second largest or smallest object using compareTo method.
